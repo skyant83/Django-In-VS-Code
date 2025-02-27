@@ -1,19 +1,19 @@
-- [Extensions](#extensions)
-- [VS Code Settings](#vs-code-settings)
-	- [Video:](#video)
-- [Starting a Django Project](#starting-a-django-project)
-	- [Starting a Git and GitHub Project](#starting-a-git-and-github-project)
-		- [Local Repository](#local-repository)
-		- [GitHub Repository](#github-repository)
-		- [Video](#video-1)
-	- [Creating a venv in VS Code](#creating-a-venv-in-vs-code)
-		- [Steps:](#steps)
-		- [Video:](#video-2)
-	- [Django Project Hacks](#django-project-hacks)
-		- [Previous Commands](#previous-commands)
-		- [Video](#video-3)
-		- [Running Django](#running-django)
-		- [Video](#video-4)
+- [Extensions](#Extensions)
+- [VS Code Settings](#VS%20Code%20Settings)
+	- [Video:](#Video:)
+- [Starting a Django Project](#Starting%20a%20Django%20Project)
+	- [Starting a Git and GitHub Project](#Starting%20a%20Git%20and%20GitHub%20Project)
+		- [Local Repository](#Local%20Repository)
+		- [GitHub Repository](#GitHub%20Repository)
+		- [Video](#Video)
+	- [Creating a venv in VS Code](#Creating%20a%20venv%20in%20VS%20Code)
+		- [Steps:](#Steps:)
+		- [Video:](#Video:)
+	- [Django Project Hacks](#Django%20Project%20Hacks)
+		- [Previous Commands](#Previous%20Commands)
+		- [Video](#Video)
+		- [Running Django](#Running%20Django)
+		- [Video](#Video)
 
 
 # Extensions
@@ -42,10 +42,11 @@ $_{\textrm{Note: These are my own personal settings. You may change them to your
 Refer to the following images for visual aid.
 
 **Editor Rulers:**
-![[rulers_settings.png]]
+![](rulers_settings.png)
 
 **Flake8(PEP8) Style Warnings:**
-![[flake8_settings.png]]
+![](flake8_settings.png)
+
 ##### Video:
 TBC
 
@@ -60,7 +61,7 @@ On the left hand side bar of VS Code, you will find the `Source Control` tab. Al
 
 Click on `Initialize Repository` to create a local repository. From here you will be able to do anything Git related.
 
-![[source-control.png]]
+![](source-control.png)
 
 The current folder will be automatically tracked for changes. Create a text file as an example.
 U ⟶ `Upload`
@@ -69,26 +70,26 @@ D ⟶ `Deleted`  (if you've deleted a tracked file)
 
 Once you are ready to make a commit, type your commit message at the top. `Shift+Enter` to create a new line. Three spaces to recrate a `Tab`. You can press the `✓ Commit` button to commit the changes. Just press yes.
 
-![[source_control_commit.png]]
+![](source_control_commit.png)
 
 Alternatively you can leave it blank and a new editor window will open where you can write your commit message there. There will be a ✓ at the top right. Click that to commit.
 
-![[empty_commit.png]]
+![](empty_commit.png)
 
 ##### GitHub Repository
 Once you are ready to publish to GitHub, just click publish. You might have to Sign-In via GitHub. Just click yes and GitHub.com will open in your browser.
 
-![[publish_branch.png]]
+![](publish_branch.png)
 
 Once you've signed in you can choose between publishing to a private or public repository. You will only have to do this once.
 
-![[publish_type.png]]
+![](publish_type.png)
 
 All future commits will will require you to click the `⟲ Sync Changes` which will push all commits to GitHub.
 
 To do other GitHub Commands, hover over `˅ Source Control` and you will see additional buttons. Hover over them to see what they do. The `⋯` button will reveal more GitHub options.
 
-![[git_options.png]]
+![](git_options.png)
 
 Alternatively, you can press `Ctrl+Shift+P` to open up your Command Pallet and type git to see what other GitHub commands you can do.
 
@@ -101,12 +102,12 @@ TBC
 VS Code has automatic tools to help you create virtual environments in Python. Here is a Step by Step process of creating a venv.
 
 ##### Steps:
-1) `Ctrl+Shift+P` ⟶ Python: Select Interpreter ![[select_interpreter.png]]
+1) `Ctrl+Shift+P` ⟶ Python: Select Interpreter ![](select_interpreter.png)
 <br>
-1) ➕ Create Virtual Environment ![[create_env.png]]
+1) ➕ Create Virtual Environment ![](create_env.png)
 <br>
-1) For the purposes of our class we will be using `venv` ![[env_type.png]]
-2) Select a Python version. Most cases, the most recent Python version that is installed in your system will be fine. ![[py_ver.png]]
+1) For the purposes of our class we will be using `venv` ![](env_type.png)
+2) Select a Python version. Most cases, the most recent Python version that is installed in your system will be fine. ![](py_ver.png)
 3) A `.venv` folder will be created. If any errors appear, just restart the process. If issues persist, contact me
 4) If a VS Code Terminal is currently open. You will need to close it and re-open it for the `.venv` to be automatically activated. 
 5) You will only need to create the `.venv` once per project.
@@ -123,11 +124,11 @@ To create a django project, you can just follow the Lecture slides. Pretty much 
 ##### Previous Commands
 In the terminal, to repeat any command you've already typed you can press `Ctrl+R`. The text `bck-i-search` will appear and you can type keywords for commands that you have entered before.
 
-![[bck_search.png]]
+![](bck_search.png)
 
 Try it out to see how it works. Its more intuitive than you think. `Ctrl+R` to iterate through matching options. So if there are multiple commands that match the input keyword, you can cycle through that list using `Ctrl+R`
 
-![[bck_search2.png]]
+![](bck_search2.png)
 
 ##### Video
 TBC
@@ -137,7 +138,7 @@ Instead of running `py manage.py runserver` each time, we can create a launch fi
 
 To create a launch file. Click on the `Run and Debug` button on the left ribbon bar that looks like a play button. You can also press `Ctrl+Shift+D` to open the menu.
 
-![[run_and_debug.png]]
+![](run_and_debug.png)
 
 From there you can click on the `create a launch.json file` link and click Web App (Chrome). A text editor will open and you can just replace that file with the following.
 
@@ -177,7 +178,7 @@ From there you can click on the `create a launch.json file` link and click Web A
 
 DO NOT FORGET TO REPLACE `hobbysite` WITH THE NAME OF YOUR DJANGO PROJECT
 
-![[launch_fix.png]]
+![](launch_fix.png)
 
 ##### Video
 TBC
