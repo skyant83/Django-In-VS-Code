@@ -1,22 +1,20 @@
----
-~
----
-- [[#Extensions|Extensions]]
-- [[#VS Code Settings|VS Code Settings]]
-	- [[#Video:|Video:]]
-- [[#Starting a Django Project|Starting a Django Project]]
-	- [[#Starting a Git and GitHub Project|Starting a Git and GitHub Project]]
-		- [[#Local Repository|Local Repository]]
-		- [[#GitHub Repository|GitHub Repository]]
-		- [[#Video|Video]]
-	- [[#Creating a venv in VS Code|Creating a venv in VS Code]]
-		- [[#Steps:|Steps:]]
-		- [[#Video:|Video:]]
-	- [[#Django Project Hacks|Django Project Hacks]]
-		- [[#Previous Commands|Previous Commands]]
-		- [[#Video|Video]]
-		- [[#Running Django|Running Django]]
-		- [[#Video|Video]]
+- [Extensions](#extensions)
+- [VS Code Settings](#vs-code-settings)
+				- [Video:](#video)
+- [Starting a Django Project](#starting-a-django-project)
+		- [Starting a Git and GitHub Project](#starting-a-git-and-github-project)
+				- [Local Repository](#local-repository)
+				- [GitHub Repository](#github-repository)
+				- [Video](#video-1)
+		- [Creating a venv in VS Code](#creating-a-venv-in-vs-code)
+				- [Steps:](#steps)
+				- [Video:](#video-2)
+		- [Django Project Hacks](#django-project-hacks)
+				- [Previous Commands](#previous-commands)
+				- [Video](#video-3)
+				- [Running Django](#running-django)
+				- [Video](#video-4)
+
 
 # Extensions
 
