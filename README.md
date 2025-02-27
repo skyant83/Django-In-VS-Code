@@ -143,37 +143,36 @@ To create a launch file. Click on the `Run and Debug` button on the left ribbon 
 From there you can click on the `create a launch.json file` link and click Web App (Chrome). A text editor will open and you can just replace that file with the following.
 
 ```json
-{
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+// Use IntelliSense to learn about possible attributes.
+// Hover to view descriptions of existing attributes.
+// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Django Debugger",
-            "type": "debugpy",
-            "request": "launch",
-            "python": "${workspaceFolder}\\.venv\\Scripts\\python",
-            "program": "${workspaceFolder}\\hobbysite\\manage.py",
-            "args": ["runserver"],
-            "django": true,
-            "justMyCode": true,
-            "serverReadyAction": {
-                "pattern": "Starting development server at http://127.0.0.1:([0-9]+)",
-                "uriFormat": "http://localhost:%s/${input:webpage}"
-            }
-        }
-    ],
-    "inputs": [
-        {
-            "id": "webpage",
-            "type": "promptString",
-            "description": "Opens Specified Sub-Page at Launch",
-            "default": ""
-        }
-    ]
+"version": "0.2.0",
+"configurations": [
+{
+    "name": "Django Debugger",
+    "type": "debugpy",
+    "request": "launch",
+    "python": "${workspaceFolder}\\.venv\\Scripts\\python",
+    "program": "${workspaceFolder}\\hobbysite\\manage.py",
+    "args": ["runserver"],
+    "django": true,
+    "justMyCode": true,
+    "serverReadyAction": {
+	"pattern": "Starting development server at http://127.0.0.1:([0-9]+)",
+	"uriFormat": "http://localhost:%s/${input:webpage}"
+    }
 }
+],
+"inputs": [
+{
+    "id": "webpage",
+    "type": "promptString",
+    "description": "Opens Specified Sub-Page at Launch",
+    "default": ""
+}
+]
+
 ```
 
 DO NOT FORGET TO REPLACE `hobbysite` WITH THE NAME OF YOUR DJANGO PROJECT
