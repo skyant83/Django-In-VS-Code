@@ -43,7 +43,7 @@ Refer to the following images for visual aid.
 
 **Editor Rulers:**
 ![](images/rulers_settings.png)
-
+<br>
 **Flake8(PEP8) Style Warnings:**
 ![](images/flake8_settings.png)
 
@@ -102,15 +102,23 @@ TBC
 VS Code has automatic tools to help you create virtual environments in Python. Here is a Step by Step process of creating a venv.
 
 ##### Steps:
-1) `Ctrl+Shift+P` ⟶ Python: Select Interpreter ![](images/select_interpreter.png)
+1) `Ctrl+Shift+P` ⟶ Python: Select Interpreter
+
+![](images/select_interpreter.png)
 <br>
-1) ➕ Create Virtual Environment ![](images/create_env.png)
+2) ➕ Create Virtual Environment
+
+![](images/create_env.png)
 <br>
-1) For the purposes of our class we will be using `venv` ![](images/env_type.png)
-2) Select a Python version. Most cases, the most recent Python version that is installed in your system will be fine. ![](images/py_ver.png)
-3) A `.venv` folder will be created. If any errors appear, just restart the process. If issues persist, contact me
-4) If a VS Code Terminal is currently open. You will need to close it and re-open it for the `.venv` to be automatically activated. 
-5) You will only need to create the `.venv` once per project.
+3) For the purposes of our class we will be using `venv`
+![](images/env_type.png)
+<br>
+4) Select a Python version. Most cases, the most recent Python version that is installed in your system will be fine.
+![](images/py_ver.png)
+<br>
+5) A `.venv` folder will be created. If any errors appear, just restart the process. If issues persist, contact me
+6) If a VS Code Terminal is currently open. You will need to close it and re-open it for the `.venv` to be automatically activated. 
+7) You will only need to create the `.venv` once per project.
 
 ##### Video:
 Here is a video recreation of all the steps to act as visual aid.
