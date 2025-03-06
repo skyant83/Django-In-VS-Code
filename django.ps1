@@ -1,8 +1,9 @@
-$cwd = Get-Location
+$global:cwd = Get-Location
+$global:is_venv_enabled
 
 if (Test-Path '.\.venv'){
 	Write-Host "g"
-	$venv = ".\.venv\"
+	$venv = ".\.venv\Scripts\Activate.ps1"
 }
 elseif (Test-Path "$env:TEMP\sky_django\venv.xml") {
 	Write-Host "h"
@@ -17,6 +18,41 @@ if (Test-Path "$env:TEMP\sky_django\django_manage.xml") {
 
 # Write-Output ("loc = {0}" -f $location)
 
+function Show-Menu {
+	do {
+		Clear-Host
+		Write-Host "================ " -NoNewline
+		Write-Host "My Basic Django" -NoNewline -ForegroundColor Magenta
+		Write-Host " ================"
+
+		Write-Host "1: Create a new Django .venv"
+		Write-Host "2: Create a new Django Project"
+		Write-Host "3: Delete a Django Project"
+		Write-Host "Q: Exit" -ForegroundColor Red
+		$choice = Read-Host "Select an option"
+		Clear-Host
+		switch ($choice) {
+			'1' {
+				New-VirtualEnvironment
+			}
+			'2' {
+				New-DjangoProject
+			}
+			'3' {
+				Remove-DjangoProject
+			}
+			'q' {
+				if (-not ([string]::IsNullOrEmpty($venv))) {
+					Invoke-Expression "$venv\Scripts\Activate.ps1"
+					Disable-Venv
+				}
+				exit
+			}
+		}
+	} until (
+		$choice -eq 'q'
+	)
+}
 function New-VirtualEnvironment {
 	$venv_loc = Get-ChildItem -Path .\ -Filter .venv -Recurse | ForEach-Object{$_.FullName}
 	if ( $venv_loc -eq ('{0}\.venv' -f $cwd)) {
@@ -27,8 +63,10 @@ function New-VirtualEnvironment {
 
 	Write-Host "Creating .venv folder..." -ForegroundColor Green
 	py -m venv .venv
+	$venv = ".\venv\Scripts\Activate.ps1"
+	Save-Venv $venv
 	Write-Host "Activating .venv..."
-	.\.venv\Scripts\activate
+	Enable-Venv
 	Write-Host "Upgrading pip..." -ForegroundColor Green
 	py -m pip install --upgrade pip
 	Write-Host "Installing Django Project modules..." -ForegroundColor Green
@@ -36,14 +74,26 @@ function New-VirtualEnvironment {
 	Write-Host "Python-dotenv Installed" -ForegroundColor Green
 	pip install Django
 	Write-Host "Django Installed" -ForegroundColor Green
-	deactivate
+	Disable-Venv
 
 	# Write-Host ($venv_loc -eq ('{0}\.venv' -f $cwd))
 	# Write-Host ('{0}\.venv' -f $cwd)
-	$venv = ".\venv\Scripts\Activate.ps1"
-	Save-Venv $venv
 	Write-Host "Finished creating virtual environment" -ForegroundColor Green
 	Pause
+}
+
+function Enable-Venv {
+	if (-not ([string]::IsNullOrEmpty($venv))) {
+		Invoke-Expression $venv
+		$global:is_venv_enabled = $true
+	}
+}
+
+function Disable-Venv {
+	if ($global:is_venv_enabled) {
+		deactivate
+		$global:is_venv_enabled = $false
+	}
 }
 
 function New-DjangoProject {
@@ -83,7 +133,7 @@ function New-DjangoProject {
 	Write-Host "Creating a new Django Project..." -ForegroundColor Green
 	django-admin startproject $proj_name
 	Set-Manage
-	deactivate
+	Disable-Venv
 	Clear-Host
 	Write-Host "Django Project $proj_name has been successfully created" -ForegroundColor Green
 	Pause
@@ -164,40 +214,5 @@ function Remove-DjangoProject {
 	}
 }
 
-function Show-Menu {
-	do {
-		Clear-Host
-		Write-Host "================ " -NoNewline
-		Write-Host "My Basic Django" -NoNewline -ForegroundColor Magenta
-		Write-Host " ================"
-
-		Write-Host "1: Create a new Django .venv"
-		Write-Host "2: Create a new Django Project"
-		Write-Host "3: Delete a Django Project"
-		Write-Host "Q: Exit" -ForegroundColor Red
-		$choice = Read-Host "Select an option"
-		Clear-Host
-		switch ($choice) {
-			'1' {
-				New-VirtualEnvironment
-			}
-			'2' {
-				New-DjangoProject
-			}
-			'3' {
-				Remove-DjangoProject
-			}
-			'q' {
-				if (-not ([string]::IsNullOrEmpty($venv))) {
-					Invoke-Expression "$venv\Scripts\Activate.ps1"
-					deactivate
-				}
-				exit
-			}
-		}
-	} until (
-		$choice -eq 'q'
-	)
-}
 
 Show-Menu
