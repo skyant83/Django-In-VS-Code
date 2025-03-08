@@ -55,15 +55,22 @@ function Show-Menu {
 }
 function New-VirtualEnvironment {
 	$venv_loc = Get-ChildItem -Path .\ -Filter .venv -Recurse | ForEach-Object{$_.FullName}
-	if ( $venv_loc -eq ('{0}\.venv' -f $cwd)) {
-		Remove-Item '{0}\.venv' -f $cwd -Force
-		Write-Host 'Deleted old .venv folder'
+	if ( $venv_loc -eq "$cwd\.venv") {
+		$title = @{ Object = "A Virtual Environment (.venv) Exists"; ForegroundColor = 'Yellow'}
+		$msg = "Confirm the creation of a new virtual environment (existing will be deleted)"
+		$yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Deletes the existing .venv to create a new one"
+		$no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "Cancels the whole process"
+		$options = [System.Management.Automation.Host.ChoiceDescription[]]($Yes, $No)
+
+		$choice = $Host.UI.PromptForChoice($title, $message, $options, 1)
+		Remove-Item "$cwd\.venv" -f $cwd -Force -Recurse
+		Write-Host "Deleted old .venv folder"
 		Pause
 	}
 
 	Write-Host "Creating .venv folder..." -ForegroundColor Green
 	py -m venv .venv
-	$venv = ".\venv\Scripts\Activate.ps1"
+	$venv = ".\.venv\Scripts\Activate.ps1"
 	Save-Venv $venv
 	Write-Host "Activating .venv..."
 	Enable-Venv
@@ -118,7 +125,7 @@ function New-DjangoProject {
 		)
 	}
 	if (-not ([string]::IsNullOrEmpty($venv))) {
-		Invoke-Expression "$venv\Scripts\Activate.ps1"
+		Invoke-Expression "$venv"
 	} else {
 		Test-Venv
 	}
@@ -214,5 +221,6 @@ function Remove-DjangoProject {
 	}
 }
 
+# $Host.UI.PromptForChoice("test", "test1", @('&Yes', '&No'),1)
 
 Show-Menu
