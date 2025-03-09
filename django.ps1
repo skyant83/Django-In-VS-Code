@@ -143,13 +143,13 @@ function New-DjangoProject {
 		Return
 	}
 	$secret = python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
-	"SECRET_KEY = '$secret'" | Out-File -FilePath .\$proj_name\.env
+	"SECRET_KEY = '$secret'" | Out-File -FilePath .\$proj_name\.env -Encoding utf8
 
 	$settings = Get-Content -path .\$proj_name\$proj_name\settings.py
 	$settings[12] = "import os`nfrom pathlib import Path`nfrom dotenv import load_dotenv`n`nload_dotenv()"
 	$settings[22] = "SECRET_KEY = os.getenv('SECRET_KEY')"
 	$settings[56] = "        'DIRS': [os.path.join(BASE_DIR, 'templates')],"
-	$settings | Out-File .\$proj_name\$proj_name\settings.py
+	$settings | Out-File .\$proj_name\$proj_name\settings.py -Encoding utf8
 
 	Disable-Venv
 	Clear-Host

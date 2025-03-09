@@ -1,4 +1,5 @@
 - [Extensions](#Extensions)
+- [NEW!!! - DJANGO SCRIPT](##%20NEW!!!%20-%20DJANGO%20SCRIPT)
 - [VS Code Settings](#VS%20Code%20Settings)
 	- [Video: ](#Video:)
 - [Starting a Django Project](#Starting%20a%20Django%20Project)
