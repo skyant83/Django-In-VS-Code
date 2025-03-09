@@ -1,6 +1,6 @@
 @{
-    Root = '\django.ps1'
-    OutputPath = '\out'
+    Root = '.\django.ps1'
+    OutputPath = '.\out'
     Package = @{
         Enabled = $true
         Obfuscate = $false
