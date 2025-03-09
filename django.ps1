@@ -1,6 +1,5 @@
+Set-ExecutionPolicy unrestricted
 $global:cwd = Get-Location
-$global:is_venv_enabled
-$global:venv
 
 if (Test-Path "$cwd\.venv"){
 	Write-Host "Found Default venv"
@@ -15,6 +14,8 @@ elseif (Test-Path "$env:TEMP\sky_django\venv.xml") {
 	} else {
 		Write-Host "Found Saved venv"
 	}
+} else {
+	$global:venv = $null
 }
 
 function Show-Menu {
@@ -141,6 +142,15 @@ function New-DjangoProject {
 		Pause
 		Return
 	}
+	$secret = python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
+	"SECRET_KEY = '$secret'" | Out-File -FilePath .\$proj_name\.env
+
+	$settings = Get-Content -path .\$proj_name\$proj_name\settings.py
+	$settings[12] = "import os`nfrom pathlib import Path`nfrom dotenv import load_dotenv`n`nload_dotenv()"
+	$settings[22] = "SECRET_KEY = os.getenv('SECRET_KEY')"
+	$settings[56] = "        'DIRS': [os.path.join(BASE_DIR, 'templates')],"
+	$settings | Out-File .\$proj_name\$proj_name\settings.py
+
 	Disable-Venv
 	Clear-Host
 	Write-Host "Django Project $proj_name has been successfully created" -ForegroundColor Green

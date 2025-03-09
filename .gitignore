@@ -1,2 +1,9 @@
-.obsidian
-.venv
+*
+!assets
+!assets/*
+!.github
+!.github/**
+!.gitignore
+!django.ps1
+!package.psd1
+!README.md

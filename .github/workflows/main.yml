@@ -1,0 +1,41 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Test
+    runs-on: windows-latest
+    permissions: write-all
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install PowerShellProTools
+        shell: powershell
+        run: |
+          Set-PSRepository PSGallery -InstallationPolicy Trusted
+          Install-Module PowerShellProTools
+
+      - name: Create django.exe
+        shell: powershell
+        run: |
+          Merge-Script -ConfigFile ${{ github.workspace }}\package.psd1 -Verbose
+
+      - name: Create Github Release
+        id: new-release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.run_number }}
+          release_name: Django in VS Code Release ${{ github.run_number }}
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.new-release.outputs.upload_url }}
+          asset_path: out\django.exe
+          asset_name: AutoDjango-v.${{ github.run_number }}.exe
+          asset_content_type: application/vnd.microsoft.portable-executable
