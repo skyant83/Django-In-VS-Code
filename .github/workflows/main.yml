@@ -1,11 +1,15 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+name: Create AutoDjango File
+run-name: ${{ github.actor }} has requested executable creation 🚀
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths: [django.ps1]
 
 jobs:
   deploy:
-    name: Test
+    name: Create Executable
     runs-on: windows-latest
     permissions: write-all
     steps:
